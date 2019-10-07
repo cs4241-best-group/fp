@@ -1,4 +1,4 @@
-console.log("we got to script")
+//console.log("we got to script")
 //let json = './tracks.js'
 //const json = require('tracks.js');
 let token
@@ -9,7 +9,7 @@ let token
             method: 'GET'
         })
         let response = await rawResponse.json()
-        console.log("token inside search token fetch " + response.token)
+        //console.log("token inside search token fetch " + response.token)
         token = response.token
     })()
 })()
@@ -19,12 +19,10 @@ window.onload = function (e) {
     searchButton.onclick = searchSpotify
     let searchInput = document.getElementById("songName")
     searchInput.addEventListener("keydown", function(event) {
-        console.log("inside of event listener")
-        // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             event.preventDefault();
             document.getElementById("songSearch").click();
-            console.log("search button was clicked by key press")
+            //console.log("search button was clicked by key press")
         }
     });
     searchInput.onsubmit = searchSpotify
@@ -43,7 +41,7 @@ $('#scrollable-table').on('click', 'tbody tr', function(event) {
 function searchSpotify() {
     let songName = document.getElementById("songName").value
 
-    console.log("do we have the token access here? " + token)
+    //console.log("do we have the token access here? " + token)
     const BASE_URL = 'https://api.spotify.com/v1/search?'
     const FETCH_URL = `${BASE_URL}q=${songName}&type=track&market=US&limit=10`
 
