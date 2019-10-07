@@ -19,7 +19,7 @@ window.onload = function (e) {
     searchButton.onclick = searchSpotify
     let searchInput = document.getElementById("songName")
     searchInput.addEventListener("keydown", function(event) {
-        if (event.keyCode === 13) {
+        if (event.key === "Enter") {
             event.preventDefault();
             document.getElementById("songSearch").click();
             //console.log("search button was clicked by key press")
@@ -61,8 +61,8 @@ function search(json) {
 
     let listOfSongNames = []
     let tracks = json.tracks.items
-    console.log("Number of tracks is " + tracks.length)
-    console.log("tracks in search: " + tracks)
+    //console.log("Number of tracks is " + tracks.length)
+    //console.log("tracks in search: " + tracks)
     $("tbody").empty()
     for (let i = 0; i < tracks.length; i++) {
         $("tbody").append("<tr>" +
