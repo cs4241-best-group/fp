@@ -6,7 +6,8 @@ const express = require('express'),
     request = require('request'),
     cors = require('cors'),
     querystring = require('querystring'),
-    mongodb = require('mongodb'),
+    //TODO: delete comment if possible
+    //mongodb = require('mongodb'),
     mongo = require('mongodb').MongoClient,
     bcrypt = require('bcrypt'),
     url = "mongodb+srv://root:admin@cluster0-qdoiu.azure.mongodb.net/test?retryWrites=true&w=majority",
@@ -18,6 +19,7 @@ const express = require('express'),
     client_secret = 'c26768e1850047ceba186a08bb061a9d', //this is VERY IMPORTANT and should NEVER be revealed in public
     redirect_uri = 'http://localhost:3000/callback', //redirects to this when authorization passes or fails
     scopes = 'user-read-private user-read-email streaming app-remote-control',
+    //TODO: delete comment if possible
     //code = '?response_type=code',
     stateKey = 'spotify_auth_state'
 
@@ -102,6 +104,7 @@ app.get("/login", function (req, res) {
 })
 
 app.get("/spotifyAccess", function (req, res) {
+    //TODO: delete comment if possible
     //let code = '?response_type=code'
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
@@ -115,7 +118,7 @@ app.get("/spotifyAccess", function (req, res) {
         }))
 })
 
-app.get('/callback', function(req, res) {
+app.get('/callback', function (req, res) {
 
     // your application requests refresh and access tokens
     // after checking the state parameter
@@ -139,7 +142,9 @@ app.get('/callback', function(req, res) {
                 grant_type: 'authorization_code'
             },
             headers: {
-                'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+                //TODO: delete comment if possible
+                //'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+                'Authorization': 'Basic ' + (Buffer.from(client_id + ':' + client_secret).toString('base64'))
             },
             json: true
         };
@@ -177,7 +182,6 @@ app.get('/callback', function(req, res) {
         });
     }
 });
-
 
 app.get('/refresh_token', function (req, res) {
 
@@ -220,15 +224,58 @@ app.get("/token", function (req, res) {
 app.get("/register", function (req, res) {
     res.sendFile(__dirname + "/public/register.html")
 })
+
 app.get("/logout", function (req, res) {
     req.logout()
     res.redirect("/")
 })
+
+app.get("/recommendation", function (req, res) {
+    new Promise(function (resolve, reject) {
+        mongo.connect(url, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        }, (err, client) => {
+            if (err) {
+                reject(err)
+            }
+            const db = client.db('MusicApp')
+            const collection = db.collection('recommendations')
+            collection.find({}).toArray().then(function (arr) {
+                let entries = []
+                arr.forEach(function (element) {
+                    const jaysawn = JSON.parse(JSON.stringify(element))
+                    if (jaysawn.username == null)
+                        console.log("null username")
+                    else if (jaysawn.tracknumber == null)
+                        console.log("null tracknumber")
+                    else if (jaysawn.rating == null)
+                        console.log("null rating")
+                    else if (jaysawn.caption == null)
+                        console.log("null caption")
+                    else {
+                        let entry = {
+                            username: jaysawn.username,
+                            tracknumber: jaysawn.tracknumber,
+                            rating: jaysawn.rating,
+                            caption: jaysawn.caption
+                        }
+                        entries.push(entry)
+                    }
+                })
+                res.send(JSON.stringify(entries))
+            })
+        })
+    })
+})
+
 app.post("/login",
     passport.authenticate("local-login", {failureRedirect: "/"}),
     function (req, res) {
         res.redirect("/spotifyAccess") //redirects to spotify access page once sign in authorizes
-    })
+    }
+)
+
 app.post("/register", function (req, res) {
     bcrypt.hash(req.body.password, 10, function (err, hash) {
         new Promise(function (resolve, reject) {
@@ -265,12 +312,14 @@ app.post("/recommendation", function (req, res) {
                 "username": req.body.username,
                 "tracknumber": req.body.tracknumber,
                 "rating": req.body.rating,
-                "caption": req.body.rating
+                "caption": req.body.caption
             }).then(r => res.redirect("/"))
         })
     })
 })
+
 function isLoggedIn(req, res, next) {
+    //TODO: delete comment if possible
     //console.log(req.isAuthenticated())
     if (req.isAuthenticated())
         return next()
@@ -278,5 +327,5 @@ function isLoggedIn(req, res, next) {
 }
 
 //added in order to run the server
-app.listen(process.env.PORT || 3001)
+app.listen(process.env.PORT || 3000)
 module.exports = app

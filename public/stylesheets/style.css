@@ -63,7 +63,7 @@ img {
 }
 
 .label {
-  margin: 2em;
+    margin: 2em;
 }
 
 .my-custom-scrollbar {
@@ -71,6 +71,7 @@ img {
     height: 200px;
     overflow: auto;
 }
+
 .table-wrapper-scroll-y {
     display: block;
 }
@@ -78,10 +79,12 @@ img {
 .table tbody tr.highlight td {
     background-color: #391A3F;
 }
+
 #current-track {
     width: 83px;
     height: 75px;
 }
+
 .hidden-data {
     visibility: hidden;
 
@@ -100,4 +103,13 @@ img {
     clear: left;
     float: left;
     margin-bottom: 1em;
+}
+
+
+.id-data {
+    visibility: hidden;
+}
+
+#rec-btn-div {
+    text-align: center;
 }
