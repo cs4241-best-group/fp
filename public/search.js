@@ -16,16 +16,10 @@ let token
 
 window.onload = function (e) {
     let searchButton = document.getElementById("songSearch")
-
-    // searchButton.submit(function(e){
-    //     console.log("Default action is prevented")
-    //     e.preventDefault();
-    // });
-
     searchButton.onclick = searchSpotify
     let searchInput = document.getElementById("songName")
-
-    searchInput.addEventListener("keyup", function(event) {
+    searchInput.addEventListener("keydown", function(event) {
+        console.log("inside of event listener")
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
             event.preventDefault();
@@ -33,7 +27,6 @@ window.onload = function (e) {
             console.log("search button was clicked by key press")
         }
     });
-
     searchInput.onsubmit = searchSpotify
 }
 
@@ -77,7 +70,7 @@ function search(json) {
         $("tbody").append("<tr>" +
             "                   <td>" + tracks[i].name + "</td>\n" +
             "                   <td>" + tracks[i].artists[0].name + "</td>" +
-            "                   <td class = 'hidden-data'>" + tracks[i].artists[0].id + "</td>" +
+            "                   <td class = 'hidden-data d-none'>" + tracks[i].artists[0].id + "</td>" +
             "             </tr>"
         )
     }
