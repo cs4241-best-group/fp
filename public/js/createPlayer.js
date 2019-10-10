@@ -15,7 +15,7 @@ let interval
 
 
 window.onSpotifyPlayerAPIReady = () => {
-    console.log("player API is ready")
+    /*console.log("player API is ready")*/
     createPlayerForSong(currentTrackID)
 }
 
@@ -40,8 +40,8 @@ function createPlayerForSong(track) {
 
                 // Playback status updates
                 player.on('player_state_changed', state => {
-                    console.log("state is: ")
-                    console.log(state)
+                    /*console.log("state is: ")
+                    console.log(state)*/
                     if (state != null) {
                         $('#current-track').attr('src', state.track_window.current_track.album.images[0].url)
                         $('#current-track-name').text(state.track_window.current_track.name)
@@ -53,7 +53,7 @@ function createPlayerForSong(track) {
 
                 // Ready
                 player.on('ready', data => {
-                    console.log('Ready with Device ID', data.device_id)
+                    /*console.log('Ready with Device ID', data.device_id)*/
                     playerData = data
                     // Play a track using our new device ID
                     getAudio(data.device_id)
@@ -72,7 +72,7 @@ function createPlayerForSong(track) {
                             xhr.setRequestHeader('Authorization', 'Bearer ' + _token)
                         },
                         success: function (data) {
-                            console.log(data)
+                            /*console.log(data)*/
                         }
                     })
                 }
@@ -85,7 +85,7 @@ function turningRecord(turn) {
     let counter = 0
     if (turn) {
         interval = setInterval(function () {
-            console.log("interval")
+            /*console.log("interval")*/
             counter -= 1
             $("#current-track").css({
                 MozTransform: 'rotate(-' + -counter + 'deg)',
@@ -105,18 +105,16 @@ turningRecord(currentlyPlaying)
 
 function togglePlayPause() {
     currentlyPlaying = !currentlyPlaying
-    if(!currentlyPlaying){
+    if (!currentlyPlaying) {
         $("canvas").remove()
-    }else{
+    } else {
         trackInfo()
     }
-    console.log("currentlyplaying is " + currentlyPlaying)
     turningRecord(currentlyPlaying)
     player.togglePlay()
     let playPauseButton = document.getElementById("play-pause-button-player");
     let imageSrc = playPauseButton.getAttribute('src')
-    if(imageSrc === "images/play.png")
-    {
+    if (imageSrc === "images/play.png") {
         playPauseButton.setAttribute('src', "images/pause.png");
     } else if (imageSrc === "images/pause.png") {
         playPauseButton.setAttribute('src', "images/play.png");
@@ -125,15 +123,15 @@ function togglePlayPause() {
 
 function playSomeTrackID(track) {
 
-    if(currentlyPlaying) {
+    if (currentlyPlaying) {
         let playPauseButton = document.getElementById("play-pause-button");
         playPauseButton.setAttribute('src', "images/pause.png");
     }
 
     updateCurrentTrack(track)
     player.disconnect()
-    console.log("player disconnected")
-    console.log("trying to play " + currentTrackID)
+    /*console.log("player disconnected")
+    console.log("trying to play " + currentTrackID)*/
     createPlayerForSong(currentTrackID)
     if (!currentlyPlaying) {
         currentlyPlaying = true
@@ -152,7 +150,8 @@ function updateCurrentTrack(track) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(json)
+    }).then(() => {
+        clearTimeout(timeout)
+        trackInfo()
     })
-    clearTimeout(timeout)
-    trackInfo()
 }

@@ -55,7 +55,7 @@ const addRecommendation = function () {
     $("#songsTbody").empty();
 }
 
-const getData = function () {
+const getUser = function () {
     (async () => {
         const rawResponse = await fetch('/user', {
             method: 'GET'
@@ -112,7 +112,7 @@ const getRecommendations = function () {
                     `      <p class="card-text"><i>` + "\"" + caption + "\"" + `</i></p>\n` +
                     `      <p class="invisible" id="songid${i}">` + songid + `</p>\n` +
                     `      <div class="nav-right">` + `\n` +
-                    `      <input type="image" src="images/play.png" id = "play-pause-button" name="play button" onclick="playSomeTrackID('` + songid + `')"/>` +
+                    `      <input type="image" src="images/play.png" id = "play-pause-button" name="play button" onclick="playSomeTrackID('` + songid + `')" alt="Play/Pause Button"/>` +
                     `      </div>` + `\n` +
                     `   </div>` + `\n` +
                     `</div>`
@@ -123,7 +123,7 @@ const getRecommendations = function () {
     })()
 }
 
-getData()
+getUser()
 getRecommendations()
 addRecBtn.onclick = addRecommendation
 
