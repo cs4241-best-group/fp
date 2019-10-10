@@ -19,7 +19,6 @@ const express = require('express'),
     scopes = 'user-read-private user-read-email streaming app-remote-control',
     stateKey = 'spotify_auth_state'
 
-
 let currentUser = [],
     access_token = null,
     refresh_token = null,
@@ -33,14 +32,18 @@ app.use(express.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
+
 app.use(session({
     secret: "tHiSiSasEcRetStr",
     resave: false,
     saveUninitialized: false
 }))
+
 app.use(passport.initialize())
 app.use(passport.session())
+
 passport.serializeUser((user, done) => done(null, currentUser[0].username))
+
 passport.deserializeUser((username, done) => {
     if (currentUser[0] !== undefined) {
         done(null, currentUser[0])
@@ -156,10 +159,7 @@ app.get('/callback', function (req, res) {
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
-                    console.log(body);
-                    //console.log("The Product is: " + body.product)
                     product = body.product
-                    console.log('token = ' + access_token)
                 });
 
                 // we can also pass the token to the browser to make requests from there
@@ -189,7 +189,6 @@ app.get('/trackAnalysis', function (req, res) {
         json: true
     };
     request.get(options, function (response, body) {
-        //console.log(body)
         res.send(body)
 
     })
