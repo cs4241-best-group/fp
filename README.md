@@ -35,10 +35,12 @@ Caitlin Enright:
 - Play/Pause button changes
 
 Elie Hess
-- 
-- 
-- 
--
+- Created main recommendation feed
+- Made client-side functions to add and retrieve recommendations to/from MongoDB
+- Created the current star rating system
+- Tweaked UI to look cleaner
+- Worked on code cleanup, optimization
+- Managed Git repo
 
 Randy Agudelo:
 -
