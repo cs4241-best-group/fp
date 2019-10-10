@@ -4,6 +4,7 @@ function trackInfo() {
     let analysis
     let scene, camera, renderer, mesh1, mesh2, mesh3, mesh4;
     let numArray = [];
+    let confidence = 1;
     (async () => {
         const rawResponse = await fetch('/trackAnalysis', {
             method: 'GET'
@@ -12,6 +13,7 @@ function trackInfo() {
         analysis = audioAnalysis.body
         let track = audioAnalysis.body.track
         let beats = audioAnalysis.body.beats
+
         function randomNumber(min, max) {
             return Math.floor(Math.random() * (max - min) + min);
         }

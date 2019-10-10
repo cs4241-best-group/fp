@@ -23,7 +23,8 @@ let currentUser = [],
     access_token = null,
     refresh_token = null,
     product = null,
-    track_id = '3n3Ppam7vgaVa1iaRUc9Lp'
+    track_id = '3n3Ppam7vgaVa1iaRUc9Lp',
+    audioAnalysis;
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'))
 app.use(logger('dev'))
