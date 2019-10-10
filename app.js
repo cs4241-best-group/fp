@@ -220,17 +220,6 @@ app.get('/refresh_token', function (req, res) {
     });
 });
 
-app.get("/trackInfo", function (req, res) {
-    let authOptions = {
-        url: 'https://api.spotify.com/v1/audio-analysis/06AKEBrKUckW0KREUWRnvT',
-        headers: {'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))},
-    }
-    if (res) {
-        const track = JSON.parse(res.body)
-    }
-})
-
-
 app.get("/user", function (req, res) {
     const json = {
         user: currentUser[0]
