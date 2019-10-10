@@ -6,8 +6,6 @@ const express = require('express'),
     request = require('request'),
     cors = require('cors'),
     querystring = require('querystring'),
-    //TODO: delete comment if possible
-    //mongodb = require('mongodb'),
     mongo = require('mongodb').MongoClient,
     bcrypt = require('bcrypt'),
     url = "mongodb+srv://root:admin@cluster0-qdoiu.azure.mongodb.net/test?retryWrites=true&w=majority",
@@ -19,8 +17,6 @@ const express = require('express'),
     client_secret = 'c26768e1850047ceba186a08bb061a9d', //this is VERY IMPORTANT and should NEVER be revealed in public
     redirect_uri = 'http://localhost:3000/callback', //redirects to this when authorization passes or fails
     scopes = 'user-read-private user-read-email streaming app-remote-control',
-    //TODO: delete comment if possible
-    //code = '?response_type=code',
     stateKey = 'spotify_auth_state'
 
 
@@ -28,8 +24,7 @@ let currentUser = [],
     access_token = null,
     refresh_token = null,
     product = null,
-    track_id = '3n3Ppam7vgaVa1iaRUc9Lp',
-    audioAnalysis;
+    track_id = '3n3Ppam7vgaVa1iaRUc9Lp'
 
 app.use(favicon(__dirname + '/public/images/favicon.ico'))
 app.use(logger('dev'))
@@ -106,8 +101,6 @@ app.get("/login", function (req, res) {
 })
 
 app.get("/spotifyAccess", function (req, res) {
-    //TODO: delete comment if possible
-    //let code = '?response_type=code'
     let state = generateRandomString(16);
     res.cookie(stateKey, state);
     res.redirect('https://accounts.spotify.com/authorize?' +
@@ -166,7 +159,7 @@ app.get('/callback', function (req, res) {
                     console.log(body);
                     //console.log("The Product is: " + body.product)
                     product = body.product
-                    console.log('token = '+ access_token)
+                    console.log('token = ' + access_token)
                 });
 
                 // we can also pass the token to the browser to make requests from there
@@ -189,13 +182,13 @@ app.post('/currentTrack', function (req, res) {
     track_id = parsedData.track
 })
 
-app.get('/trackAnalysis', function (req,res) {
+app.get('/trackAnalysis', function (req, res) {
     const options = {
-        url: 'https://api.spotify.com/v1/audio-analysis/'+track_id, //req.body
+        url: 'https://api.spotify.com/v1/audio-analysis/' + track_id, //req.body
         headers: {'Authorization': 'Bearer ' + access_token},
         json: true
     };
-    request.get(options, function(response,body){
+    request.get(options, function (response, body) {
         //console.log(body)
         res.send(body)
 
@@ -206,8 +199,8 @@ app.get('/trackAnalysis', function (req,res) {
 app.get('/refresh_token', function (req, res) {
 
     // requesting access token from refresh token
-    var refresh_token = req.query.refresh_token;
-    var authOptions = {
+    let refresh_token = req.query.refresh_token;
+    let authOptions = {
         url: 'https://accounts.spotify.com/api/token',
         headers: {'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))},
         form: {
@@ -227,14 +220,14 @@ app.get('/refresh_token', function (req, res) {
     });
 });
 
-app.get("/trackInfo",function(req,res){
-    var authOptions = {
+app.get("/trackInfo", function (req, res) {
+    let authOptions = {
         url: 'https://api.spotify.com/v1/audio-analysis/06AKEBrKUckW0KREUWRnvT',
-        headers: {'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64')) },
-        }
-        if(res){
-            const track = JSON.parse(res.body)
-        }
+        headers: {'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))},
+    }
+    if (res) {
+        const track = JSON.parse(res.body)
+    }
 })
 
 
@@ -356,8 +349,6 @@ app.post("/recommendation", function (req, res) {
                 "songname": req.body.songname,
                 "artist": req.body.artist
             }).then(() => {
-                // Uncomment the next line and comment the one after it to clear all recommendations
-                //collection.deleteMany({}).then(res.redirect("/"))
                 res.redirect("/");
             })
         })
@@ -370,6 +361,5 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login")
 }
 
-//added in order to run the server
 app.listen(process.env.PORT || 3001)
 module.exports = app

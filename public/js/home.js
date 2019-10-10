@@ -1,8 +1,7 @@
 const MAXIMUM_ENTRIES_LOADED = 25
-const refreshBtn = document.getElementById("refresh-btn")
 const addRecBtn = document.getElementById("add-rec-btn")
 const list = document.getElementById("recommendation-list")
-const recText = document.getElementById("exampleFormControlTextarea2")
+const recText = document.getElementById("caption-text-area")
 let username = "badUsernameZQFMGB"
 
 const addRecommendation = function () {
@@ -44,9 +43,19 @@ const addRecommendation = function () {
         document.getElementById("secretSongName").innerHTML = "-1"
         getRecommendations()
     })
+
+    document.getElementById("star5").checked = false;
+    document.getElementById("star4").checked = false;
+    document.getElementById("star3").checked = false;
+    document.getElementById("star2").checked = false;
+    document.getElementById("star1").checked = false;
+    document.getElementById("songName").value = "";
+    recText.setAttribute('placeholder', "Write a note about the song here");
+    recText.value = "";
+    $("#songsTbody").empty();
 }
 
-const getData = function () {
+const getUser = function () {
     (async () => {
         const rawResponse = await fetch('/user', {
             method: 'GET'
@@ -95,7 +104,7 @@ const getRecommendations = function () {
                     `      <p class="card-text">`
 
                 for (let j = 0; j < rating; j++)
-                    newRecommendation += `<img src="../images/fullstar.png" alt="Star"/>`
+                    newRecommendation += `<img src="../images/purplestar.png" alt="Star"/>`
                 for (let j = rating; j < 5; j++)
                     newRecommendation += `<img src="../images/emptystar.png" alt="Blank Star"/>`
 
@@ -103,7 +112,7 @@ const getRecommendations = function () {
                     `      <p class="card-text"><i>` + "\"" + caption + "\"" + `</i></p>\n` +
                     `      <p class="invisible" id="songid${i}">` + songid + `</p>\n` +
                     `      <div class="nav-right">` + `\n` +
-                    `      <input type="image" src="images/play.png" id = "play-pause-button" name="play button" onclick="playSomeTrackID('` + songid + `')"/>` +
+                    `      <input type="image" src="images/play.png" id = "play-pause-button" name="play button" onclick="playSomeTrackID('` + songid + `')" alt="Play/Pause Button"/>` +
                     `      </div>` + `\n` +
                     `   </div>` + `\n` +
                     `</div>`
@@ -114,7 +123,7 @@ const getRecommendations = function () {
     })()
 }
 
-getData()
+getUser()
 getRecommendations()
 addRecBtn.onclick = addRecommendation
 

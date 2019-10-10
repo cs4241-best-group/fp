@@ -10,11 +10,11 @@ body {
     }
 }
 
-@media (max-device-height: 1200px) {
-    body {
-        overflow: auto;
-    }
-}
+/*@media (max-device-height: 1200px) {*/
+/*    body {*/
+/*        overflow: auto;*/
+/*    }*/
+/*}*/
 
 nav {
     margin-bottom: 2%;
@@ -56,7 +56,7 @@ label {
 
 .post {
     text-align: center;
-    margin: 2em;
+    margin: 0;
 }
 
 img {
@@ -87,6 +87,10 @@ img {
     overflow: auto;
 }
 
+table {
+    max-height: 20%;
+}
+
 .table-wrapper-scroll-y {
     display: block;
 }
@@ -100,8 +104,6 @@ img {
     width: 20%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
     border-radius: 50%;
 }
 
@@ -110,7 +112,6 @@ img {
 }
 
 .leftJustify {
-    /*float: left;*/
     text-align: center;
 }
 
@@ -120,17 +121,12 @@ img {
     margin-bottom: 1em;
 }
 
-
 .id-data {
     visibility: hidden;
 }
 
 #rec-btn-div {
     text-align: center;
-}
-
-.stars {
-
 }
 
 .rate {
@@ -159,12 +155,12 @@ img {
 }
 
 .rate > input:checked ~ label {
-    color: #ffc700;
+    color: #6a3075;
 }
 
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;
+    color: #5a2963;
 }
 
 .rate > input:checked + label:hover,
@@ -172,7 +168,7 @@ img {
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+    color: #492151;
 }
 
 .invisible {
@@ -181,7 +177,7 @@ img {
 
 .player-header {
     position: sticky;
-    top: 0px;
+    top: 0;
 }
 
 .recommendations-container {
@@ -204,7 +200,8 @@ img {
     width: 30px;
     color: rgba(0, 0, 0, 0.87) !important;
 }
-.background{
+
+.background {
     position: absolute;
     width: 1000px;
     height: 1000px;
@@ -213,10 +210,11 @@ img {
     z-index: -100;
 }
 
-.content{
+.content {
     position: relative;
     z-index: 100;
 }
+
 .nav-right {
     float: right;
 }
@@ -225,16 +223,6 @@ img {
     opacity: .87;
 
 }
-
-/*.searchButton {*/
-/*    color: #391A3F !important;*/
-/*    border-color: #391A3F !important;*/
-/*}*/
-
-/*.recommendationButton {*/
-/*    background-color: #391A3F !important;*/
-/*    border-color: #391A3F !important;*/
-/*}*/
 
 .searchButton {
     color: #FE3B53 !important;
@@ -254,5 +242,22 @@ img {
 #signUpBtn {
     background-color: #2D9FFE;
     border-color: #2D9FFE;
+}
+
+table::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+table::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+table::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
 }
 
