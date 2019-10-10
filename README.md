@@ -46,9 +46,11 @@ Randy Agudelo:
 -
  
 René Borner:
-- 
--
-- 
-- 
+- MongoDB setup with authentification and recommendation functionality and backend routes
+- Backend and frontend connection for different functionalities like getting the spotify token in the frontend
+- Round and turning song cover image
+- Worked on spotify player with track number
+- Worked on search functionality
+- Worked on star rating
 
  
