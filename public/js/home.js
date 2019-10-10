@@ -1,7 +1,7 @@
 const MAXIMUM_ENTRIES_LOADED = 25
 const addRecBtn = document.getElementById("add-rec-btn")
 const list = document.getElementById("recommendation-list")
-const recText = document.getElementById("exampleFormControlTextarea2")
+const recText = document.getElementById("caption-text-area")
 let username = "badUsernameZQFMGB"
 
 const addRecommendation = function () {
