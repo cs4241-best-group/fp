@@ -13,7 +13,7 @@ In order to see the animation and hear the songs playing, you need to authorize 
 
 
 ## 3. An outline of the technologies you used and how you used them.
-- Spotify API’s: we used these API’s to allow the songs to be played through the app. It also let the user search for a certain track using the name. Information given by the api about the track’s beats helped to create the visualization in the background.
+- Spotify API’s: we used these API’s to allow the songs to be played through the app. It also let the user search for a certain track using the name. Information given by the api about the track’s beats and tempo helped to create the visualization in the background.
 - Bootstrap: we used this for all of the layout and styling of the page to give the app a more cohesive look
 - Three.js: This was used to create the 3-d background. The visual moves along with the beats of the currently playing song
 - MongoDB: This was used for the database which stores the user login information as well as all of the recommendations (maybe write about password hashing & salting with bcrypt)
@@ -41,9 +41,12 @@ Elie Hess
 -
 
 Randy Agudelo:
--
--
--
+- Registered Spotify application to be able to work with the premium Spotify users
+- Initialized the server 
+- Worked on the server and backend to authorize the user through Spotify to gain access to their account
+- Created different paths on the server to get specific Spotify Info
+- Created an audio visualizer in the background 
+- Helped with some of the error handling 
  
 René Borner:
 - 
