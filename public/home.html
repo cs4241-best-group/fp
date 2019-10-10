@@ -52,35 +52,26 @@
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-xs-12 side-container mb-2">
 
-<!--                    <div class="input-group mb-3">-->
-<!--                        <input type="text" class="form-control" placeholder="Search">-->
-<!--                        <div class="input-group-append">-->
-<!--                            <button class="btn btn-success" type="submit">Go</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
                     <form class="form-inline my-2 my-lg-0 leftJustify col-12">
                         <div class="input-group mt-2 mb-2 col-12">
                             <input aria-label="Search" class="form-control  float-left col-12 songInput"
                                    id="songName"
                                    placeholder="Search for a Song" type="search">
                             <div class="input-group-append">
-                            <button class="btn btn-outline-danger  searchButton" id="songSearch"
-                                    type="button">
-                                Search
-                            </button>
+                                <button class="btn btn-outline-danger  searchButton" id="songSearch"
+                                        type="button">
+                                    Search
+                                </button>
                             </div>
                         </div>
                     </form>
-<!--                    my-2 mb-2 my-sm-0 mb-lg-2-->
-<!--                    mb-2 mt-lg-2-->
                     <div class="table-wrapper-scroll-y my-custom-scrollbar results-table">
                         <table class="table table-dark" id="scrollable-table">
                             <tbody>
                             </tbody>
                         </table>
                     </div>
-                    <label for="caption-text-area" class="invisible"></label>
+                    <label class="invisible" for="caption-text-area"></label>
                     <textarea class="form-control"
                               id="caption-text-area"
                               placeholder="Write a note about the song here"
@@ -113,9 +104,9 @@
                         <h5 class="card-title col-4" id="current-track-name">Song Name, Artist, Album</h5>
                         <h5 class="card-title col-4" id="current-track-artist"></h5>
                         <div class="nav-right row col-2">
-                            <input id="play-pause-button-player" name="play button" onclick="togglePlayPause()"
-                                   src="images/pause.png"
-                                   type="image" alt="Play/Pause Button"/>
+                            <input alt="Play/Pause Button" id="play-pause-button-player" name="play button"
+                                   onclick="togglePlayPause()"
+                                   src="images/pause.png" type="image"/>
                         </div>
                     </nav>
                     <div class="card">
