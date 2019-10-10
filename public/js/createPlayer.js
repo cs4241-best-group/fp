@@ -138,8 +138,7 @@ function updateCurrentTrack(track) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(json)
-    }).then(() => {
-        clearTimeout(timeout)
-        trackInfo()
     })
+    clearTimeout(timeout)
+    trackInfo()
 }
