@@ -361,5 +361,5 @@ function isLoggedIn(req, res, next) {
     res.redirect("/login")
 }
 
-app.listen(process.env.PORT || 3001)
+app.listen(process.env.PORT || 3000)
 module.exports = app
