@@ -10,12 +10,6 @@ body {
     }
 }
 
-/*@media (max-device-height: 1200px) {*/
-/*    body {*/
-/*        overflow: auto;*/
-/*    }*/
-/*}*/
-
 nav {
     margin-bottom: 2%;
     opacity: .87;
