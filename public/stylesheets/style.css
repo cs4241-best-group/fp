@@ -50,7 +50,7 @@ label {
 
 .post {
     text-align: center;
-    margin: 2em;
+    margin: 0;
 }
 
 img {
@@ -79,6 +79,10 @@ img {
     position: relative;
     height: 200px;
     overflow: auto;
+}
+
+table {
+    max-height: 20%;
 }
 
 .table-wrapper-scroll-y {
