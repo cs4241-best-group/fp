@@ -197,7 +197,8 @@ img {
     width: 30px;
     color: rgba(0, 0, 0, 0.87) !important;
 }
-.background{
+
+.background {
     position: absolute;
     width: 1000px;
     height: 1000px;
@@ -206,10 +207,11 @@ img {
     z-index: -100;
 }
 
-.content{
+.content {
     position: relative;
     z-index: 100;
 }
+
 .nav-right {
     float: right;
 }

@@ -50,7 +50,7 @@ const addRecommendation = function () {
     document.getElementById("star2").checked = false;
     document.getElementById("star1").checked = false;
     document.getElementById("songName").value = "";
-    recText.setAttribute('placeholder',"Write a note about the song here");
+    recText.setAttribute('placeholder', "Write a note about the song here");
     recText.value = "";
     $("#songsTbody").empty();
 }
